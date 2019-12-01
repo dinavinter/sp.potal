@@ -23,5 +23,7 @@ https://dinavinter.github.io/sp-portal/index.html
      
     
  
-
+test user for both portal and slo test
+b2b.e2e.test@gmail.com
+Q123456w
 
