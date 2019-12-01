@@ -1,4 +1,4 @@
-# sp -portl
+# sp -portal
  
 https://dinavinter.github.io/sp-portal/index.html
 
