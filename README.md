@@ -1,16 +1,15 @@
-# b2b-test
+# sp -portl
  
-https://dinavinter.github.io/b2b-portal/index.html
+https://dinavinter.github.io/sp-portal/index.html
 
  
 **Site config**
 * Go to "Site Settings" in CDC and add .*/github.io/* and .*/localhost/* to trusted urls
-* Enable site under "Organization management"
-  
+   
  
 ********** **Config** **********
 * Go to "Client config"
-    * set your apiKey, domain and portal app id
+    * set your apiKey, domain and sps
     * press "save"  
 
 ********** **Working local** **********
@@ -23,17 +22,6 @@ https://dinavinter.github.io/b2b-portal/index.html
 * Browse https:\\localhost:4580\index.html
      
     
-** delegated admin flow **  
-*Invite new user to organization and associate with delegated admin role using plainId console.
-*Go to test page and login with the password you got through invitation email
-*Press on organization management 
-*You should be redirected to plain id console in organization scope
-
-** view assets **  
-*Invite new user to organization and associate with role that linked to a policy using plainId console.
-*Go to test page and login with the password you got through invitation email
-*Press on get assets
-*You view user assets 
-
+ 
 
 
