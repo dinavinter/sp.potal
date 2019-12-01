@@ -1,0 +1,94 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css"/>
+ 
+<script  type="module">
+	import  {sites} from './scripts/default-sites.js';
+  
+	window.load_cfg= load_cfg;
+	window.update_all= update_all;
+	load_sites();
+	load_all();	 
+
+function init()
+		{
+			load_sites();
+			load_all();
+		}
+	    
+ function update_all() {
+	var cfgform = document.getElementById("cfgform");
+	var fields = cfgform.getElementsByClassName("cfgfield");
+	for (var i = 0; i < fields.length; i++) {
+		var value = fields[i].value;
+		localStorage.setItem(fields[i].id, value);
+	}
+}
+
+function load_all () {
+	var cfgform = document.getElementById("cfgform");
+	var fields = cfgform.getElementsByClassName("cfgfield");
+	for (var i = 0; i < fields.length; i++) {
+		fields[i].value = localStorage.getItem(fields[i].id);
+	}
+}
+
+function load_sites() { 
+	const envList =  Object.keys(sites);
+	const envsLinks = envList.map(x => `<a onClick=load_cfg("${x}") href="javascript:void(0);" style="background-color:darkslategray">${x}</a>`);
+	const envsDD = document.getElementById("environment-content");
+	envsDD.innerHTML = envsLinks.join();
+	 
+
+}
+
+	function load_cfg(cfgName) {
+		const cfg = sites[cfgName];
+		Object.keys(cfg).forEach(x=>{
+			localStorage.setItem(x, cfg[x]);});
+
+		load_all();
+	}
+ 
+</script>
+
+ </head>
+<body>
+
+<div id="environment-content"  class="sidebar" >
+     	  
+</div>
+
+<form id="cfgform" action="javascript:void(0)"  style="margin-left:100">
+
+	<div class="form-group">
+		<label for="domain">Gigya Domain</label>
+		<input class="form-control cfgfield" id="domain" type="text"></input>
+	</div>
+	
+	<div class="form-group">
+		<label for="apiKey">API key</label>
+		<input class="form-control cfgfield" id="apiKey" type="text"></input>
+	</div>
+
+	<div class="form-group">
+		<label for="apiKey">SPNames</label>
+		<input class="form-control cfgfield" id="sps" type="text"></input>
+	</div>
+
+	<div class="form-group">
+		<a href="./index.html" onclick="update_all()">save</a>
+	</div>
+</form>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+<script>
+</script>
+</html>

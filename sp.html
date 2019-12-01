@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <title>B2B Test</title>
+    <script type="module" src="./scripts/loadGigya.js"></script> 
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const spName = urlParams.get('spName');
+        if (typeof gigya != "undefined") {
+            load();
+        }
+        var onGigyaServiceReady = load;
+
+        function load()
+        {
+            gigya.fidm.saml.initSSO(  {spName:spName, redirectURL:'https://dinavinter.github.io/b2b-portal/index.html'});
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>    

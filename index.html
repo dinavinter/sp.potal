@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <title>Magic Portal</title>
+    <script type="module" src="./scripts/loadGigya.js"></script>
+    <script type="module" src="./scripts/authorization.js"></script> 
+    <script type="module" src="./scripts/configuration.js"></script> 
+    <script type="text/javascript" src="./scripts/screens.js"></script>
+
+         
+    <script type="module">
+ 
+         import {clientCfg} from './scripts/configuration.js';   
+        window.clientCfg = clientCfg;
+ 
+         loadApps();
+
+         if (typeof gigya != "undefined") {
+            load();
+        }
+        var onGigyaServiceReady = load;
+ 
+        function load() {
+
+        
+            gigya.socialize.addEventHandlers({
+                onLogin: function() {
+                    gigya.fidm.saml.continueSSO();
+                }
+            });
+
+ 
+        }
+
+         function loadApps() {
+             var apps = clientCfg.sps.split(',').map(x => ` <a  forg href="./sp.html?spName=${x}" target="_blank"> <label > ${x} </label></a>`);
+             
+             const element = document.getElementById("apps");
+             element.innerHTML = apps.join();
+         }
+     
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+<div class="topnav">
+    <a href="./configuration.html" style="background-color:darkslategray">Client config</a>
+    <a onclick="showRegistration()" href="javascript:void(0);">Login</a> 
+    <a onclick="logout()" href="javascript:void(0);">Logout</a>
+    <a onclick="showProfile()" href="javascript:void(0);">Profile</a>
+    <a onclick="showAccountJson()" href="javascript:void(0);">Show account as json</a>
+    <a  href="https://github.com/dinavinter/sp-portal">Source Code</a>
+
+    <!--    <a onclick="logout()" href="javascript:void(0);">Logout</a>
+            <a onclick="showProfile()" href="javascript:void(0);">Show profile</a>
+    -->
+
+</div>
+<div class="sidebar">
+    <a href="#apps" class="header">apps</a>
+
+    <div id="apps" style="background-color:darkslategray"></div>
+     
+
+
+</div>
+
+
+<div id="portal"  style="margin-left:100">
+    <h5>
+        <div id="logged-in-txt"></div>
+    </h5>
+
+    <br/> <br/> <br/>
+ 
+    <div style="margin-left:100">
+        
+    <div id="div">
+
+    </div>
+        
+  
+
+</div>
+
+
+</body>
+
+</html>
