@@ -11,7 +11,7 @@
         import {clientCfg } from "./scripts/configuration.js";
 
         const urlParams = new URLSearchParams(window.location.search);
-        const apiKey = urlParams.get('apiKey');
+        const apiKey = urlParams.get('apiKey') ||urlParams.get('apikey');
         var domain= clientCfg.domain  ;
         if(!domain)
         {
